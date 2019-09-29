@@ -5,8 +5,6 @@
 # export ACCESS_TOKEN= "622518493-6VcLIPprbQbv9wkcBBPvCle8vsjU9fE85Dq9oStl"
 # export ACCESS_TOKEN_SECRET= "tH9aKQbQQ1iRdYTcLSsPwitl44BkAc6jilrsU0ifnXvZhq"
 
-# is this since_id? 1178361132878307329
-
 import datetime
 import time
 import tweepy
@@ -130,22 +128,29 @@ def generate_tweet(source='bob',prompt='', hashtags=''):
 def main():
     api = create_api()
     # change this?
-    since_id = 1178361132878307329
+    with open('sinceid.txt', 'r') as f:
+        try:
+            since_id = int(f.readline())
+        except:
+            since_id = 1178361132878307329
+    print(since_id)
     while True:
         follow_followers(api)
         hashtags = get_hashtags(api)
         new_tweet = generate_tweet(hashtags=hashtags)
         print('Updating twitter status.')
         try:
-            print('testing')
-            # api.update_status(new_tweet)
+            api.update_status(new_tweet)
         except:
             logger.error("Something went wrong.", exc_info= True)
 
+        print('updating since_id')
         since_id = check_mentions(api, since_id)
+        with open('sinceid.txt', 'w') as f:
+            f.write(str(since_id))
 
         logger.info("Waiting...")
-        sec = 200
+        sec = 1800
         print(f'Going to sleep for {sec} seconds.')
         time.sleep(sec) 
 
