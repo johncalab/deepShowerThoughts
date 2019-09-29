@@ -5,44 +5,54 @@
 # export ACCESS_TOKEN= "622518493-6VcLIPprbQbv9wkcBBPvCle8vsjU9fE85Dq9oStl"
 # export ACCESS_TOKEN_SECRET= "tH9aKQbQQ1iRdYTcLSsPwitl44BkAc6jilrsU0ifnXvZhq"
 
-# testing: !!!
+# is this since_id? 1178361132878307329
 
+import datetime
 import time
 import tweepy
 import logging
 import os
 logger = logging.getLogger()
 
+
 def create_api():
-    # consumer_key = os.getenv("CONSUMER_KEY")
-    # consumer_secret = os.getenv("CONSUMER_SECRET")
-    # access_token = os.getenv("ACCESS_TOKEN")
-    # access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
-    consumer_key = API_KEY
-    consumer_secret = API_SECRET
-    access_token = ACCESS_TOKEN
-    access_token_secret = ACCESS_SECRET
+    consumer_key = os.getenv("CONSUMER_KEY")
+    consumer_secret = os.getenv("CONSUMER_SECRET")
+    access_token = os.getenv("ACCESS_TOKEN")
+    access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
+    # consumer_key = API_KEY
+    # consumer_secret = API_SECRET
+    # access_token = ACCESS_TOKEN
+    # access_token_secret = ACCESS_SECRET
+
+    print('Creating and verifying api.')
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth, wait_on_rate_limit=True, 
         wait_on_rate_limit_notify=True)
-    try:
-        api.verify_credentials()
-    except Exception as e:
-        logger.error("Error creating API", exc_info=True)
-        raise e
-    logger.info("API created")
+
+    api.verify_credentials()
+    print('Credentials verified.')
     return api
 
 def follow_followers(api):
+    print('Following all followers.')
     logger.info("Retrieving and following followers")
     for follower in tweepy.Cursor(api.followers).items():
         if not follower.following:
             logger.info(f"Following {follower.name}")
             follower.follow()
 
+def human_weekday(w):
+    weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    try:
+        return weekdays[w]
+    except:
+        return ''
+
 def get_hashtags(api):
+    print('Retrieving hashtags.')
     location_tags = {'London': 44418, 'New York': 2459115, 'San Francisco': 2487956, 'Seattle': 2490383}
     popular_hashtags = {}
     for location_id in location_tags.values():
@@ -55,57 +65,89 @@ def get_hashtags(api):
                     popular_hashtags[name] = volume
     entries = sorted(popular_hashtags.items(), key=lambda item: item[1], reverse=True)
 
-    # augment this with #DayOfWeekThoughts
-    # import datetime
-    hashtags = '\n#deepShowerThoughts #AI #MachineLearning #BigData'
-    for entry in entries[:4]:
+    wkd = human_weekday(datetime.datetime.today().weekday())
+    hashtags = '\n#deepShowerThoughts #AI #MachineLearning #' + wkd + 'Thoughts'
+    for entry in entries[:3]:
         hashtag = entry[0]
         hashtags += ' ' + hashtag
     return hashtags
 
-def check_mentions_fav_reply(api, since_id):
+def check_mentions(api, since_id):
     logger.info("Retrieving mentions")
     new_since_id = since_id
     for tweet in tweepy.Cursor(api.mentions_timeline,since_id=since_id).items():
         new_since_id = max(tweet.id, new_since_id)
 
         # change magick to something which generates a sentence
-        seed = text[15:]
-        if tweet.user == 'johntweetsthings':
-            reply = magick(seed)
+        prompt = tweet.text[15:]
+        reply = generate_tweet(prompt=prompt)
+        try:
             api.update_status(status = reply,
                 in_reply_to_status_id = tweet.id,
                 auto_populate_reply_metadata=True)
+        except:
+            logger.error("Failed to reply.", exc_info=True)
         
-        # does not seem to always work
         try:
             tweet.favorite()
         except:
-            print(f"Fav did not work for tweet {tweet.id}.")
+            logger.error("Failed to like tweet.", exc_info=True)
 
         if not tweet.user.following:
             tweet.user.follow()
 
-        if tweet.in_reply_to_status_id is not None:
-            continue
+        # if tweet.in_reply_to_status_id is not None:
+        #     continue
 
     return new_since_id
 
-def tweet_something():
-    # gen_samp
+def generate_tweet(source='bob',prompt='', hashtags=''):
+    print('Generating tweet.')
 
+    root_path = os.path.join('ai', source)
+    import pickle
+    params_path = os.path.join(root_path, 'params.pkl')
+    params = pickle.load(open(params_path,'rb'))
+
+    model_path = os.path.join(root_path, 'model.pt')
+    from ai.charmodel import charModel
+    from ai.charvocabulary import charVocabulary
+    from ai.charsample import gen_samp
+    import torch
+    
+    dict_path = os.path.join(root_path, 'dict.pkl')
+    token_to_idx = pickle.load(open(dict_path,'rb'))
+    vocab = charVocabulary(token_to_idx=token_to_idx)
+
+    model = charModel(**params)
+    model.load_state_dict(torch.load(model_path, map_location='cpu'))
+    model.eval()
+
+    out = gen_samp(model=model, vocab=vocab, prompt=prompt) + hashtags
+    out = out[:280]
+    return out
 
 def main():
     api = create_api()
     # change this?
-    since_id = 1
+    since_id = 1178361132878307329
     while True:
         follow_followers(api)
-        since_id = check_mentions(api, since_id)   
+        hashtags = get_hashtags(api)
+        new_tweet = generate_tweet(hashtags=hashtags)
+        print('Updating twitter status.')
+        try:
+            print('testing')
+            # api.update_status(new_tweet)
+        except:
+            logger.error("Something went wrong.", exc_info= True)
+
+        since_id = check_mentions(api, since_id)
+
         logger.info("Waiting...")
-        time.sleep(1800) 
-
-
+        sec = 200
+        print(f'Going to sleep for {sec} seconds.')
+        time.sleep(sec) 
 
 if __name__ == "__main__":
     main()
