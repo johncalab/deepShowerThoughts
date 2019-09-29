@@ -1,0 +1,17 @@
+INFO:root:Vocab size is 136.
+INFO:root:Embedding dim is 128.
+INFO:root:RNN hidden dim is 512.
+INFO:root:I am using 2 RNN layers.
+INFO:root:Dropout is 0.5.
+INFO:root:Batch size is 64.
+INFO:root:Folder is oren.
+INFO:root:Training on training_data/may15nov17_above130_less100_light.csv.
+INFO:root:Dictionary is in oren/dict.pkl.
+INFO:root:Model is in oren/model.pt.
+INFO:root:Loss info is in oren/losses.txt.
+INFO:root:Best loss is in oren/bestloss.txt.
+INFO:root:I aspire to train for 2 epochs.
+INFO:root:I am resuming training.
+INFO:root:I will try to use CUDA.
+INFO:root:I am using cpu.
+INFO:root:Loss improved! I am saving this model.
