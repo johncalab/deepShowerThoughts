@@ -40,7 +40,10 @@ def follow_followers(api):
     for follower in tweepy.Cursor(api.followers).items():
         if not follower.following:
             logger.info(f"Following {follower.name}")
-            follower.follow()
+            try:
+                follower.follow()
+            except:
+                logger.error("Something went wrong while trying to follow", exc_info=True)
 
 def human_weekday(w):
     weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -92,7 +95,10 @@ def check_mentions(api, since_id):
             logger.error("Failed to like tweet.", exc_info=True)
 
         if not tweet.user.following:
-            tweet.user.follow()
+            try:
+                tweet.user.follow()
+            except:
+                logger.error('could not follow', exc_info=True)
 
         # if tweet.in_reply_to_status_id is not None:
         #     continue
