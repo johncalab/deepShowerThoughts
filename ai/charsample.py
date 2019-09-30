@@ -66,7 +66,7 @@ def gen_samp(model,
         idx = vocab.lookup_token(c)
         one_hot.append(idx)
 
-    hot_tensor = torch.tensor(one_hot, dtype=int).unsqueeze(dim=0)
+    hot_tensor = torch.tensor(one_hot, dtype=torch.int64).unsqueeze(dim=0)
     embedded = model.emb(hot_tensor)
     _, h_n = model.rnn(embedded)
     # h_n contains the last outputs of all layers
