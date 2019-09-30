@@ -156,7 +156,7 @@ def main():
             f.write(str(since_id))
 
         logger.info("Waiting...")
-        sec = 1800
+        sec = 3600
         print(f'Going to sleep for {sec} seconds.')
         time.sleep(sec) 
 
