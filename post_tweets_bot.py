@@ -12,7 +12,6 @@ import logging
 import os
 logger = logging.getLogger()
 
-
 def create_api():
     consumer_key = os.getenv("CONSUMER_KEY")
     consumer_secret = os.getenv("CONSUMER_SECRET")
@@ -33,17 +32,6 @@ def create_api():
     api.verify_credentials()
     print('Credentials verified.')
     return api
-
-def follow_followers(api):
-    print('Following all followers.')
-    logger.info("Retrieving and following followers")
-    for follower in tweepy.Cursor(api.followers).items():
-        if not follower.following:
-            logger.info(f"Following {follower.name}")
-            try:
-                follower.follow()
-            except:
-                logger.error("Something went wrong while trying to follow", exc_info=True)
 
 def human_weekday(w):
     weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -73,38 +61,6 @@ def get_hashtags(api):
         hashtags += ' ' + hashtag
     return hashtags
 
-def check_mentions(api, since_id):
-    logger.info("Retrieving mentions")
-    new_since_id = since_id
-    for tweet in tweepy.Cursor(api.mentions_timeline,since_id=since_id).items():
-        new_since_id = max(tweet.id, new_since_id)
-
-        # change magick to something which generates a sentence
-        prompt = tweet.text[15:]
-        reply = generate_tweet(prompt=prompt)
-        try:
-            api.update_status(status = reply,
-                in_reply_to_status_id = tweet.id,
-                auto_populate_reply_metadata=True)
-        except:
-            logger.error("Failed to reply.", exc_info=True)
-        
-        try:
-            tweet.favorite()
-        except:
-            logger.error("Failed to like tweet.", exc_info=True)
-
-        if not tweet.user.following:
-            try:
-                tweet.user.follow()
-            except:
-                logger.error('could not follow', exc_info=True)
-
-        # if tweet.in_reply_to_status_id is not None:
-        #     continue
-
-    return new_since_id
-
 def generate_tweet(source='bob',prompt='', hashtags=''):
     print('Generating tweet.')
 
@@ -133,30 +89,17 @@ def generate_tweet(source='bob',prompt='', hashtags=''):
 
 def main():
     api = create_api()
-    # change this?
-    with open('sinceid.txt', 'r') as f:
-        try:
-            since_id = int(f.readline())
-        except:
-            since_id = 1178361132878307329
-    print(since_id)
     while True:
-        follow_followers(api)
-        # hashtags = get_hashtags(api)
-        # new_tweet = generate_tweet(hashtags=hashtags)
-        # print('Updating twitter status.')
-        # try:
-        #     api.update_status(new_tweet)
-        # except:
-        #     logger.error("Something went wrong.", exc_info= True)
-
-        print('updating since_id')
-        since_id = check_mentions(api, since_id)
-        with open('sinceid.txt', 'w') as f:
-            f.write(str(since_id))
+        hashtags = get_hashtags(api)
+        new_tweet = generate_tweet(hashtags=hashtags)
+        print('Updating twitter status.')
+        try:
+            api.update_status(new_tweet)
+        except:
+            logger.error("Something went wrong.", exc_info= True)
 
         logger.info("Waiting...")
-        sec = 60
+        sec = 3600
         print(f'Going to sleep for {sec} seconds.')
         time.sleep(sec) 
 
