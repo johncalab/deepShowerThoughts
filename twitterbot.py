@@ -82,12 +82,16 @@ def check_mentions(api, since_id):
         # change magick to something which generates a sentence
         prompt = tweet.text[15:]
         reply = generate_tweet(prompt=prompt)
-        try:
-            api.update_status(status = reply,
-                in_reply_to_status_id = tweet.id,
-                auto_populate_reply_metadata=True)
-        except:
-            logger.error("Failed to reply.", exc_info=True)
+
+        if tweet.user.name == 'deepShowerThoughts':
+            pass
+        else:
+            try:
+                api.update_status(status = reply,
+                    in_reply_to_status_id = tweet.id,
+                    auto_populate_reply_metadata=True)
+            except:
+                logger.error("Failed to reply.", exc_info=True)
         
         try:
             tweet.favorite()
