@@ -1,0 +1,174 @@
+Something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-37-b88161ab7fdb>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+Something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-37-b88161ab7fdb>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+Something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-37-b88161ab7fdb>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-38-827f3f2bfa58>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-38-827f3f2bfa58>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-38-827f3f2bfa58>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-39-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-39-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-39-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-41-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-41-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-41-d69874a79a57>", line 29, in <module>
+    loss = F.cross_entropy(y_pred_loss, y_loss, ignore_index=maskid)
+NameError: name 'maskid' is not defined
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-56-628b81f006ba>", line 31, in <module>
+    loss.backward()
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/tensor.py", line 118, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-56-628b81f006ba>", line 31, in <module>
+    loss.backward()
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/tensor.py", line 118, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-56-628b81f006ba>", line 31, in <module>
+    loss.backward()
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/tensor.py", line 118, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-56-628b81f006ba>", line 31, in <module>
+    loss.backward()
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/tensor.py", line 118, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-18-af1462e52692>", line 31, in <module>
+    loss.backward()
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/tensor.py", line 118, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/autograd/__init__.py", line 93, in backward
+    allow_unreachable=True)  # allow_unreachable flag
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-44-4b4eb71ae9e9>", line 24, in <module>
+    y_pred = model(x,device=device)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-35-770816f99a7e>", line 39, in forward
+    x = self.tblocks(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/container.py", line 92, in forward
+    input = module(input)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-7-93b4008f2cca>", line 23, in forward
+    attended = self.attention(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-6-0e0c38e6b58c>", line 48, in forward
+    dot = F.softmax(dot, dim=2)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/functional.py", line 1230, in softmax
+    ret = input.softmax(dim)
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-44-4b4eb71ae9e9>", line 24, in <module>
+    y_pred = model(x,device=device)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-35-770816f99a7e>", line 39, in forward
+    x = self.tblocks(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/container.py", line 92, in forward
+    input = module(input)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-7-93b4008f2cca>", line 23, in forward
+    attended = self.attention(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-6-0e0c38e6b58c>", line 48, in forward
+    dot = F.softmax(dot, dim=2)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/functional.py", line 1230, in softmax
+    ret = input.softmax(dim)
+KeyboardInterrupt
+something went wrong
+Traceback (most recent call last):
+  File "<ipython-input-44-4b4eb71ae9e9>", line 24, in <module>
+    y_pred = model(x,device=device)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-35-770816f99a7e>", line 39, in forward
+    x = self.tblocks(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/container.py", line 92, in forward
+    input = module(input)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-7-93b4008f2cca>", line 23, in forward
+    attended = self.attention(x)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/modules/module.py", line 547, in __call__
+    result = self.forward(*input, **kwargs)
+  File "<ipython-input-6-0e0c38e6b58c>", line 48, in forward
+    dot = F.softmax(dot, dim=2)
+  File "/anaconda3/envs/insight/lib/python3.7/site-packages/torch/nn/functional.py", line 1230, in softmax
+    ret = input.softmax(dim)
+KeyboardInterrupt
