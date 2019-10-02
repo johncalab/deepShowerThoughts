@@ -145,7 +145,10 @@ def main():
             since_id = 1178361132878307329
     print(since_id)
     while True:
-        follow_followers(api)
+        try:
+            follow_followers(api)
+        except:
+            logger.error('failed to follow followers', exc_info=True)
         # hashtags = get_hashtags(api)
         # new_tweet = generate_tweet(hashtags=hashtags)
         # print('Updating twitter status.')
@@ -155,9 +158,12 @@ def main():
         #     logger.error("Something went wrong.", exc_info= True)
 
         print('updating since_id')
-        since_id = check_mentions(api, since_id)
-        with open('sinceid.txt', 'w') as f:
-            f.write(str(since_id))
+        try:
+            since_id = check_mentions(api, since_id)
+            with open('sinceid.txt', 'w') as f:
+                f.write(str(since_id))
+        except:
+            logger.error('failed to run check_mentions', exc_info=True)
 
         logger.info("Waiting...")
         sec = 60
