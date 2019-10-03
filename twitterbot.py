@@ -81,7 +81,10 @@ def check_mentions(api, since_id):
 
         # change magick to something which generates a sentence
         prompt = tweet.text[15:]
-        reply = generate_tweet(prompt=prompt)
+        try:
+            reply = generate_tweet(prompt=prompt)
+        except:
+            logger.error('failed to generate tweet', exc_info=True)
 
         if tweet.user.name == 'deepShowerThoughts':
             pass
