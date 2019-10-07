@@ -99,7 +99,7 @@ def main():
             logger.error("Something went wrong.", exc_info= True)
 
         logger.info("Waiting...")
-        sec = 3600
+        sec = 10800
         print(f'Going to sleep for {sec} seconds.')
         time.sleep(sec) 
 
