@@ -1,4 +1,6 @@
-ai/__pycache__
 sinceid.txt
 ignore
-.DS_Store
+plots
+*.ipynb_checkpoints
+*.DS_Store
+*__pycache__
