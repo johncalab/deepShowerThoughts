@@ -1,6 +1,6 @@
 # deepShowerThoughts
 
-This is a small project I made for the Insight Data Science fellowship. I trained a few different neural networks on reddit's r/showerthoughts, deployed the result as a bot on twitter. twitter.com/deepThoughtsAI
+This is a small project I made for the Insight Data Science fellowship. I trained a few different neural networks on reddit's r/showerthoughts, deployed the result as a bot on twitter. https://twitter.com/deepThoughtsAI
 
 ## The bot
 The bot is currently hosted on AWS. It updates its status every hour. The status is a combination of AI-generated text, some fixed hashtags, and the three most popular hashtags between New York London San Francisco and Seattle (at the time of posting). The bot also responds to mentions: if you tweet `@deepThoughtsAI`with some text, the bot will respond by trying to complete it to a full sentence. Every minute the bot checks for followers, retweets, likes, and follows users back.
