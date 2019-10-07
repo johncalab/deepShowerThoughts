@@ -3,10 +3,10 @@
 This is a small project I made for the Insight Data Science fellowship. I trained a few different neural networks on reddit's r/showerthoughts, deployed the result as a bot on twitter. [twitter.com/deepThoughtsAI](https://twitter.com/deepThoughtsAI)
 
 ## The bot
-The bot is currently hosted on AWS. It updates its status every hour. The status is a combination of AI-generated text, some fixed hashtags, and the three most popular hashtags between New York London San Francisco and Seattle (at the time of posting). The bot also responds to mentions: if you tweet `@deepThoughtsAI`with some text, the bot will respond by trying to complete it to a full sentence. Every minute the bot checks for followers, retweets, likes, and follows users back.
+The bot is currently hosted on AWS. It updates its status on a regular basis (currently every three hours). The status is a combination of AI-generated text, some fixed hashtags, and the three most popular hashtags between New York London San Francisco and Seattle (at the time of posting). The bot also responds to mentions: if you tweet `@deepThoughtsAI`with some text, the bot will respond by trying to complete it to a full sentence. Every minute the bot checks for followers, retweets, likes, and follows users back.
 
 ## The AI
-The models were trained using PyTorch. The architecture is a simple character-based RNN. The folder ai contains different modules used for training: vocabulary, vectorizer, dataset, a script for generating samples, and one to train the model (using argparse to pass arguments via the a command line). Since I trained models on Google Colab (to take advantage of the free GPU), there is also jupyter notebook aggregating all the modules (this is the most up to date).
+The models were trained using PyTorch. The architecture is a simple character-based RNN. The folder ai contains different modules used for training: vocabulary, vectorizer, dataset, a script for generating samples, and one to train the model (using argparse to pass arguments via the command line). Since I trained models on Google Colab (to take advantage of the free GPU), there is also jupyter notebook aggregating all the modules (this is the most up to date).
 
 ### Transformer
 I'm currently experimenting with a mini-Transformer architecture. You can find a jupyter notebook for it, but it's still very much a work in progress.
