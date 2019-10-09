@@ -4,3 +4,5 @@ plots
 **.ipynb_checkpoints
 **__pycache__
 **.DS_Store
+ai/mini-transf_funziona.ipynb
+ai/transformer_notebook.ipynb
