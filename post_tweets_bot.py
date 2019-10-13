@@ -61,7 +61,7 @@ def get_hashtags(api):
         hashtags += ' ' + hashtag
     return hashtags
 
-def generate_tweet(source='giacomo',prompt='', hashtags=''):
+def generate_tweet(source='maurizio',prompt='', hashtags=''):
     print('Generating tweet.')
 
     root_path = os.path.join('ai', source)
