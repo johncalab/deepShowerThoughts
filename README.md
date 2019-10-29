@@ -19,11 +19,10 @@ The notebook (or trainer script) works with the following workflow.
 - If `RESUME == True`, a vocabulary is loaded from a pickled dictionary, otherwise one is created from the training data.
 - If `RESUME == True`, hyperparameters are loaded from a pickled dictionary (`embedding_dim`, `rnn_hidden_dim`, `num_layers`, `dropout_p`, `bidirectional`), otherwise they are set and pickled.
 - More hyperparameters are set (`CUDA, NUM_EPOCHS, BATCH_SIZE, LEARNING_RATE, SPLIT_FRAC`) and training data is loaded in a PyTorch DataLoader object.
-- A logger is created (this could be improved).
+- A logger is created.
 - While running the training loop, epoch training and validation losses are written to a txt file, so that they may be plotted afterwards.
 - Every time the testing loss goes down the model is saved.
 - At the end of each epoch a few samples of text are generated to track progress of the model.
 
 ## Plots
 The plots folder contains a few graphs I used for a presentation I needed to deliver. One plot shows how much I let one model overfit, while the others are concerned with the training data, which comes from reddit's r/showerthoughts.
-
